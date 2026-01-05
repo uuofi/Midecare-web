@@ -28,7 +28,7 @@ export const translations = {
     contactSales: 'تواصل معنا',
 
     // Home Page
-    appName: 'ميديكير',
+    appName: 'Medicare',
     appTagline: 'حجز مواعيد ومحادثة آمنة بين المراجع والطبيب',
     heroTitle: 'احجز موعدك وتواصل مع طبيبك بسهولة',
     heroDescription: 'تطبيق يربط المراجع والطبيب: حجز مواعيد، متابعة التفاصيل، محادثة (مع دعم التشفير من طرف لطرف)، وإدارة الحساب.',
@@ -602,10 +602,31 @@ export const getTranslation = (language: Language, key: string): string => {
   return String(value);
 };
 
+export const getTranslationList = (language: Language, key: string): string[] => {
+  const keys = key.split('.');
+  let value: any = translations[language];
+
+  for (const k of keys) {
+    value = value?.[k];
+  }
+
+  if (Array.isArray(value)) return value.map((v) => String(v));
+  if (typeof value === 'string') {
+    return value
+      .split('\n')
+      .map((v) => v.trim())
+      .filter(Boolean);
+  }
+  if (value === 0) return ['0'];
+  if (!value) return [];
+  return [String(value)];
+};
+
 type LanguageContextValue = {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  tList: (key: string) => string[];
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -642,6 +663,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       language,
       setLanguage,
       t: (key: string) => getTranslation(language, key),
+      tList: (key: string) => getTranslationList(language, key),
     };
   }, [language, setLanguage]);
 

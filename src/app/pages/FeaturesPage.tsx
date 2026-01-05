@@ -2,63 +2,63 @@ import { ClipboardList, Bell, Shield, MessageSquare, MapPin, QrCode, FileSpreads
 import { useLanguage } from '../../lib/i18n';
 
 export default function FeaturesPage() {
-  const { language, t } = useLanguage();
+  const { language, t, tList } = useLanguage();
 
   const features = [
     {
       icon: ClipboardList,
       title: t('featureBookingTitle'),
       description: t('featureBookingDesc'),
-      features: t('featureBookingBullets') as string[]
+      features: tList('featureBookingBullets')
     },
     {
       icon: MessageSquare,
       title: t('featureChatTitle'),
       description: t('featureChatDesc'),
-      features: t('featureChatBullets') as string[]
+      features: tList('featureChatBullets')
     },
     {
       icon: Shield,
       title: t('featureE2eeTitle'),
       description: t('featureE2eeDesc'),
-      features: t('featureE2eeBullets') as string[]
+      features: tList('featureE2eeBullets')
     },
     {
       icon: Bell,
       title: t('featureNotificationsTitle'),
       description: t('featureNotificationsDesc'),
-      features: t('featureNotificationsBullets') as string[]
+      features: tList('featureNotificationsBullets')
     },
     {
       icon: QrCode,
       title: t('featureQrTitle'),
       description: t('featureQrDesc'),
-      features: t('featureQrBullets') as string[]
+      features: tList('featureQrBullets')
     },
     {
       icon: MapPin,
       title: t('featureMapsTitle'),
       description: t('featureMapsDesc'),
-      features: t('featureMapsBullets') as string[]
+      features: tList('featureMapsBullets')
     },
     {
       icon: FileSpreadsheet,
       title: t('featureReportsTitle'),
       description: t('featureReportsDesc'),
-      features: t('featureReportsBullets') as string[]
+      features: tList('featureReportsBullets')
     },
     {
       icon: UserCircle,
       title: t('featureAccountTitle'),
       description: t('featureAccountDesc'),
-      features: t('featureAccountBullets') as string[]
+      features: tList('featureAccountBullets')
     }
   ];
 
   return (
     <div>
       {/* Hero Section */}
-      <section className={`medical-ecg-bg bg-primary text-primary-foreground py-20 ${language === 'ar' ? 'rtl' : 'ltr'}`}>
+      <section className={`medical-ecg-bg bg-gradient-to-r from-primary via-primary/90 to-primary/70 text-primary-foreground py-20 ${language === 'ar' ? 'rtl' : 'ltr'}`}>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl lg:text-5xl mb-6">{t('powerfulFeatures')}</h1>

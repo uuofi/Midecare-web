@@ -60,7 +60,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className={`relative medical-ecg-bg bg-primary text-primary-foreground py-20 lg:py-32 ${language === 'ar' ? 'rtl' : 'ltr'}`}>
+      <section className={`relative medical-ecg-bg bg-gradient-to-r from-primary via-primary/90 to-primary/70 text-primary-foreground py-20 lg:py-32 ${language === 'ar' ? 'rtl' : 'ltr'}`}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-in fade-in slide-in-from-bottom-2 duration-700">

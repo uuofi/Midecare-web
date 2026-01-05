@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../lib/i18n';
 
 export default function PricingPage() {
-  const { language, t } = useLanguage();
+  const { language, t, tList } = useLanguage();
 
   const plans = [
     {
@@ -12,7 +12,7 @@ export default function PricingPage() {
       price: '$99',
       duration: t('monthBilling'),
       description: t('starterDesc'),
-      features: t('starterFeatures') as string[],
+      features: tList('starterFeatures'),
       recommended: false
     },
     {
@@ -21,7 +21,7 @@ export default function PricingPage() {
       price: '$249',
       duration: t('monthBilling'),
       description: t('professionalDesc'),
-      features: t('professionalFeatures') as string[],
+      features: tList('professionalFeatures'),
       recommended: true
     },
     {
@@ -30,7 +30,7 @@ export default function PricingPage() {
       price: t('enterprisePrice'),
       duration: '',
       description: t('enterpriseDesc'),
-      features: t('enterpriseFeatures') as string[],
+      features: tList('enterpriseFeatures'),
       recommended: false
     }
   ];

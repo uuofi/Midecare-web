@@ -72,7 +72,7 @@ export default function AboutPage() {
   return (
     <div className={language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
-      <section className="medical-ecg-bg bg-primary text-primary-foreground py-20">
+      <section className="medical-ecg-bg bg-gradient-to-r from-primary via-primary/90 to-primary/70 text-primary-foreground py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl lg:text-5xl mb-6">{copy.heroTitle}</h1>

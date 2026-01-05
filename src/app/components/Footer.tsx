@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
-import { Activity, Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Instagram, Mail, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../../lib/i18n';
+import { INSTAGRAM_URL, WHATSAPP_PHONE_E164, getWhatsAppUrl } from '../../lib/socialLinks';
 
 export default function Footer() {
   const { language, t } = useLanguage();
+  const whatsappUrl = getWhatsAppUrl(WHATSAPP_PHONE_E164);
+  const instagramHref = INSTAGRAM_URL || '/contact';
+  const whatsappHref = whatsappUrl || '/contact';
 
   return (
     <footer className={`bg-gray-900 text-white ${language === 'ar' ? 'rtl' : 'ltr'}`}>
@@ -12,17 +16,36 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <Activity className="w-6 h-6 text-white" />
-              </div>
+              <img
+                src="/logo.png"
+                alt={t('appName')}
+                className="w-10 h-10 rounded-lg object-contain"
+                loading="lazy"
+                decoding="async"
+              />
               <span className="text-xl">{t('appName')}</span>
             </Link>
             <p className="text-gray-400 mb-4">
               {t('aboutText')}
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
-                <Facebook className="w-5 h-5" />
+              <a
+                href={instagramHref}
+                target={INSTAGRAM_URL ? '_blank' : undefined}
+                rel={INSTAGRAM_URL ? 'noreferrer' : undefined}
+                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href={whatsappHref}
+                target={whatsappUrl ? '_blank' : undefined}
+                rel={whatsappUrl ? 'noreferrer' : undefined}
+                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" />
               </a>
             </div>
           </div>
