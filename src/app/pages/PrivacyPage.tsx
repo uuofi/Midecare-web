@@ -13,7 +13,7 @@ export default function PrivacyPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl lg:text-5xl mb-6">{language === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</h1>
             <p className="text-xl text-primary-foreground/80">
-              {language === 'ar' ? 'آخر تحديث: يناير 2024' : 'Last updated: January 2024'}
+              {language === 'ar' ? 'آخر تحديث: 2026-01-06' : 'Last updated:  2026-01-06'}
             </p>
           </div>
         </div>
