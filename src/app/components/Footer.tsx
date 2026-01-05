@@ -24,12 +24,6 @@ export default function Footer() {
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
             </div>
           </div>
 
@@ -61,7 +55,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-gray-400">
                 <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                <span>support@medicare-iq.com</span>
+                <span>medicare410@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -69,7 +63,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-sm">© 2024 {t('appName')}. {t('copyright')}</p>
+          <p className="text-gray-400 text-sm">© 2026 {t('appName')}. {t('copyright')}</p>
           <div className="flex gap-6 text-sm">
             <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">{t('privacyPolicy')}</Link>
             <Link to="/terms" className="text-gray-400 hover:text-white transition-colors">{t('termsService')}</Link>
