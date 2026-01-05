@@ -6,14 +6,12 @@ export const SITE_IMAGES: {
   errorPlaceholderSvg: string;
   medicalEcgMask: string;
 } = {
-  heroDoctorTech:
-    'https://images.unsplash.com/photo-1757152962882-6bf8495b324d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwZG9jdG9yJTIwdGVjaG5vbG9neXxlbnwxfHx8fDE3Njc1NDgzODN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-  dashboardScreen:
-    'https://images.unsplash.com/photo-1747224317356-6dd1a4a078fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwZGFzaGJvYXJkJTIwc2NyZWVufGVufDF8fHx8MTc2NzU0ODM4M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-  clinicSoftware:
-    'https://images.unsplash.com/photo-1691934286085-c88039d93dae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlJTIwc29mdHdhcmUlMjBjbGluaWN8ZW58MXx8fHwxNzY3NTQ4MzgzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-  modernHospital:
-    'https://images.unsplash.com/photo-1764885517847-79d62138cc58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3NwaXRhbCUyMG1vZGVybiUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3Njc1NDgzODR8MA&ixlib=rb-4.1.0&q=80&w=1080',
+  // Default to local, server-managed assets.
+  // Put these files in your hosting under: /site/
+  heroDoctorTech: '/site/hero-doctor-tech.jpg',
+  dashboardScreen: '/site/dashboard-screen.jpg',
+  clinicSoftware: '/site/clinic-software.jpg',
+  modernHospital: '/site/modern-hospital.jpg',
 
   errorPlaceholderSvg:
     'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iODgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIzLjciPjxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiByeD0iNiIvPjxwYXRoIGQ9Im0xNiA1OCAxNi0xOCAzMiAzMiIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iMzUiIHI9IjciLz48L3N2Zz4KCg==',
