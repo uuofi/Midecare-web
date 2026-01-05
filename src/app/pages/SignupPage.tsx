@@ -49,6 +49,8 @@ export default function SignupPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [successNote, setSuccessNote] = useState<string | null>(null);
 
   const normalizeIraqPhoneTo10Digits = (value: string): string => {
     let digits = String(value || '').replace(/\D/g, '');
@@ -80,6 +82,8 @@ export default function SignupPage() {
     e.preventDefault();
     setError(null);
     setInfo(null);
+    setSuccess(false);
+    setSuccessNote(null);
 
     if (!name.trim() || !phone.trim() || !password || !confirmPassword || !age.trim()) {
       setError(language === 'ar' ? 'الرجاء تعبئة جميع الحقول المطلوبة.' : 'Please fill all required fields.');
@@ -178,12 +182,15 @@ export default function SignupPage() {
       });
 
       if (res.needsApproval) {
-        setInfo(res.message || (language === 'ar' ? 'تم إنشاء الحساب وبانتظار موافقة الادمن.' : 'Account created, pending admin approval.'));
-        navigate('/login');
+        setSuccess(true);
+        setSuccessNote(
+          res.message || (language === 'ar' ? 'تم إنشاء الحساب وبانتظار موافقة الادمن.' : 'Account created, pending admin approval.')
+        );
         return;
       }
 
-      navigate('/');
+      setSuccess(true);
+      setSuccessNote(null);
     } catch (err) {
       if (err instanceof ApiError) setError(err.message);
       else setError(language === 'ar' ? 'حدث خطأ. حاول مرة أخرى.' : 'Something went wrong.');
@@ -196,12 +203,28 @@ export default function SignupPage() {
     <div className={`${directionClass} py-12`}>
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto bg-card border rounded-2xl shadow-sm p-6">
-          <h1 className="text-2xl text-foreground mb-2">{language === 'ar' ? 'إنشاء حساب' : 'Sign up'}</h1>
-          <p className="text-muted-foreground mb-6">
-            {language === 'ar'
-              ? 'أنشئ حساب مراجع أو طبيب بنفس نظام التطبيق.'
-              : 'Create a patient or doctor account (same backend as the app).'}
-          </p>
+          {success ? (
+            <>
+              <h1 className="text-2xl text-foreground mb-2">{language === 'ar' ? 'تم إنشاء الحساب بنجاح' : 'Account created successfully'}</h1>
+              <p className="text-muted-foreground mb-6">
+                {successNote || (language === 'ar' ? 'يمكنك الآن تسجيل الدخول.' : 'You can now log in.')}
+              </p>
+              <button
+                type="button"
+                onClick={() => navigate('/login')}
+                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
+              >
+                {language === 'ar' ? 'ابدأ' : 'Get started'}
+              </button>
+            </>
+          ) : (
+            <>
+              <h1 className="text-2xl text-foreground mb-2">{language === 'ar' ? 'إنشاء حساب' : 'Sign up'}</h1>
+              <p className="text-muted-foreground mb-6">
+                {language === 'ar'
+                  ? 'أنشئ حساب مراجع أو طبيب بنفس نظام التطبيق.'
+                  : 'Create a patient or doctor account (same backend as the app).'}
+              </p>
 
           <div className="mb-6 flex gap-2">
             <button
@@ -450,6 +473,8 @@ export default function SignupPage() {
               {language === 'ar' ? 'تسجيل الدخول' : 'Login'}
             </Link>
           </div>
+            </>
+          )}
         </div>
       </div>
     </div>
