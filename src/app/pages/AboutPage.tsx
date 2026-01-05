@@ -1,11 +1,8 @@
 import { CheckCircle, Target, Lightbulb, TrendingUp } from 'lucide-react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { useLanguage } from '../../lib/i18n';
-import { useSiteImages } from '../../lib/siteImagesContext';
 
 export default function AboutPage() {
   const { language, t } = useLanguage();
-  const { siteImages } = useSiteImages();
 
   const copy = language === 'ar'
     ? {
@@ -84,19 +81,10 @@ export default function AboutPage() {
       {/* Product Idea Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl text-foreground mb-6">{copy.ideaTitle}</h2>
-              <p className="text-lg text-muted-foreground mb-6">{copy.ideaP1}</p>
-              <p className="text-lg text-muted-foreground mb-6">{copy.ideaP2}</p>
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-lg">
-              <ImageWithFallback
-                src={siteImages.modernHospital}
-                alt="Modern hospital"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div>
+            <h2 className="text-3xl lg:text-4xl text-foreground mb-6">{copy.ideaTitle}</h2>
+            <p className="text-lg text-muted-foreground mb-6">{copy.ideaP1}</p>
+            <p className="text-lg text-muted-foreground mb-6">{copy.ideaP2}</p>
           </div>
         </div>
       </section>

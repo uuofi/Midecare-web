@@ -3,11 +3,9 @@ import { Activity, Users, ClipboardList, TrendingUp, Bell, Shield, Check, Messag
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { useLanguage } from '../../lib/i18n';
 import { TypewriterText } from '../components/TypewriterText';
-import { useSiteImages } from '../../lib/siteImagesContext';
 
 export default function HomePage() {
   const { language, t } = useLanguage();
-  const { siteImages } = useSiteImages();
 
   const features = [
     {
@@ -79,11 +77,12 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
               </div>
             </div>
+
             <div className="relative animate-in fade-in slide-in-from-bottom-2 duration-700 delay-150">
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <div className="rounded-2xl overflow-hidden shadow-2xl bg-white/5">
                 <ImageWithFallback
-                  src={siteImages.heroDoctorTech}
-                  alt="Medical professional using technology"
+                  src="/site/hero-doctor-tech.png"
+                  alt="Hero"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -146,32 +145,6 @@ export default function HomePage() {
             >
               {t('features')}
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* App Screenshots Section */}
-      <section className={`py-20 bg-secondary ${language === 'ar' ? 'rtl' : 'ltr'}`}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl text-foreground mb-4">{t('seeItInAction')}</h2>
-            <p className="text-xl text-muted-foreground">{t('intuitiveInterface')}</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="rounded-xl overflow-hidden shadow-lg">
-              <ImageWithFallback
-                src={siteImages.dashboardScreen}
-                alt="Dashboard interface"
-                className="w-full h-96 object-cover"
-              />
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-lg">
-              <ImageWithFallback
-                src={siteImages.clinicSoftware}
-                alt="Healthcare software interface"
-                className="w-full h-96 object-cover"
-              />
-            </div>
           </div>
         </div>
       </section>
