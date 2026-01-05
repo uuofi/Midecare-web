@@ -1,0 +1,25 @@
+# Example Nginx config for a Vite + React Router (BrowserRouter) SPA.
+# This makes ALL routes work when opened directly (e.g. /privacy, /terms).
+
+server {
+  listen 80;
+  server_name medicare-iq.com;
+
+  root /var/www/medicare-iq.com; # <-- point this to your deployed 'dist' folder
+  index index.html;
+
+  # Optional: fix trailing slash on privacy
+  rewrite ^/privacy/$ /privacy permanent;
+
+  location / {
+    # Try static files first, otherwise serve the SPA entry.
+    try_files $uri $uri/ /index.html;
+  }
+
+  # Optional: cache static assets
+  location ~* \.(?:js|css|png|jpg|jpeg|gif|svg|ico|webp|woff2?)$ {
+    try_files $uri =404;
+    expires 30d;
+    add_header Cache-Control "public, max-age=2592000";
+  }
+}

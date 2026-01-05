@@ -9,6 +9,36 @@
 
   Run `npm run dev` to start the development server.
 
+  ## Deploy (important for links / deep routes)
+
+  This website uses React Router with `BrowserRouter`. That means routes like `/privacy`, `/terms`, `/about` must be handled by your server.
+
+  If your server is not configured for SPA fallback, opening a link directly (or refreshing the page) can show **404 Not Found**.
+
+  Pick one option:
+
+  - **Nginx:** use the SPA fallback (see `nginx.conf.example`). Key line:
+    - `try_files $uri $uri/ /index.html;`
+  - **Apache:** copy `public/.htaccess` next to `index.html`.
+  - **Netlify:** `public/_redirects` already includes `/* /index.html 200`.
+  - **Vercel:** `vercel.json` includes a rewrite to `/index.html`.
+
+  ### If you deploy with GitHub + PM2 (common VPS setup)
+
+  On the server (inside the `medweb` folder):
+
+  - Build the static site:
+    - `npm ci`
+    - `npm run build`
+
+  - Serve the built `dist/` with SPA fallback (makes all routes work):
+    - `pm2 delete medweb || true`
+    - `pm2 serve dist 3000 --spa --name medweb`
+    - `pm2 save`
+
+  If you have Nginx in front, proxy to the PM2 port:
+  - `location / { proxy_pass http://127.0.0.1:3000; }`
+
   ## Managing images (بدون تعديل كود)
 
   This web app expects “replaceable” images to be served as static files.
