@@ -150,7 +150,7 @@ export default function PrivacyPage() {
                 </p>
                 <div className="bg-gray-50 rounded-lg p-6">
                   <p className="text-gray-700">
-                    <strong>{language === 'ar' ? 'البريد:' : 'Email:'}</strong> support@medicare-iq.com
+                    <strong>{language === 'ar' ? 'البريد:' : 'Email:'}</strong> medicare410@gmail.com
                   </p>
                 </div>
               </div>

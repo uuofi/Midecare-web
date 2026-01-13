@@ -234,13 +234,11 @@ export default function SignupPage() {
             >
               {language === 'ar' ? 'مراجع' : 'Patient'}
             </button>
-            <button
-              type="button"
-              onClick={() => setRole('doctor')}
-              className={`px-4 py-2 rounded-lg border ${role === 'doctor' ? 'bg-primary text-primary-foreground border-primary' : 'bg-input-background text-foreground border-border'}`}
-            >
-              {language === 'ar' ? 'طبيب' : 'Doctor'}
-            </button>
+          </div>
+          <div className="mb-4 p-3 rounded-lg bg-secondary text-foreground border">
+            {language === 'ar'
+              ? 'تسجيل الأطباء متاح فقط من خلال التطبيق، ولا يمكن إنشاء حساب دكتور من الموقع.'
+              : 'Doctor registration is only available through the mobile app. You cannot create a doctor account from the website.'}
           </div>
 
           {error && (
@@ -290,7 +288,7 @@ export default function SignupPage() {
                     />
                   </>
                 ) : (
-                  <div className="hidden md:block" />
+                  <div className="hidden" />
                 )}
               </div>
               <div>
