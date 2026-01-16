@@ -1,22 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../lib/auth';
 import { useLanguage } from '../../lib/i18n';
 
 export default function AccountDeletionPage() {
   const { language } = useLanguage();
-  const { user, logout, accessToken } = useAuth();
+  const { user, logout, accessToken, status } = useAuth();
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (status !== 'authenticated') {
+      setTimeout(() => navigate('/login'), 1000);
+    }
+  }, [status, navigate]);
+
   const handleDelete = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccess(false);
     setLoading(true);
+    if (!accessToken) {
+      setError(language === 'ar' ? 'يجب تسجيل الدخول أولاً.' : 'You must be logged in.');
+      setLoading(false);
+      return;
+    }
     try {
       const res = await fetch('https://api.medicare-iq.com/api/auth/delete-account', {
         method: 'POST',
@@ -27,8 +38,9 @@ export default function AccountDeletionPage() {
         body: JSON.stringify({ password })
       });
       if (!res.ok) {
-        const data = await res.json();
-        setError(data.message || (language === 'ar' ? 'كلمة المرور غير صحيحة.' : 'Incorrect password.'));
+        let data: { message?: string } = {};
+        try { data = await res.json(); } catch {}
+        setError((data && data.message) || (language === 'ar' ? 'كلمة المرور غير صحيحة أو حدث خطأ.' : 'Incorrect password or error.'));
         setLoading(false);
         return;
       }
@@ -38,9 +50,23 @@ export default function AccountDeletionPage() {
       setTimeout(() => navigate('/'), 2000);
     } catch (err) {
       setError(language === 'ar' ? 'حدث خطأ. حاول مرة أخرى.' : 'An error occurred. Please try again.');
+      // طباعة الخطأ في الكونسول للمطور
+      // eslint-disable-next-line no-console
+      console.error('Account deletion error:', err);
       setLoading(false);
     }
   };
+
+  if (status !== 'authenticated') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md text-center">
+          <h1 className="text-2xl font-bold mb-4">{language === 'ar' ? 'حذف الحساب' : 'Delete Account'}</h1>
+          <p className="mb-4 text-gray-600">{language === 'ar' ? 'يجب تسجيل الدخول أولاً.' : 'You must be logged in.'}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
