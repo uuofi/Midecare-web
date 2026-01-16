@@ -67,6 +67,14 @@ export default function AccountPage() {
             >
               {language === 'ar' ? 'تسجيل خروج' : 'Logout'}
             </button>
+            <a
+              href="https://medicare-iq.com/account-deletion"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-destructive text-destructive rounded-lg hover:bg-destructive/10 transition-colors"
+            >
+              {language === 'ar' ? 'حذف الحساب' : 'Delete Account'}
+            </a>
           </div>
         </div>
       </div>

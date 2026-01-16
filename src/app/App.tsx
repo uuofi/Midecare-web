@@ -14,6 +14,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AccountPage from './pages/AccountPage';
 import { SiteImagesProvider } from '../lib/siteImagesContext';
+import AccountDeletionPage from './pages/AccountDeletionPage';
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/download" element={<DownloadPage />} />
+              <Route path="/account-deletion" element={<AccountDeletionPage />} />
             </Routes>
           </main>
           <Footer />
