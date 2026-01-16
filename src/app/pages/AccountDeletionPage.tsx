@@ -12,11 +12,24 @@ export default function AccountDeletionPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // إذا لم يكن المستخدم مسجل دخول، يتم توجيهه لتسجيل الدخول
   useEffect(() => {
-    if (status !== 'authenticated') {
-      setTimeout(() => navigate('/login'), 1000);
+    if (status === 'anonymous' || status === 'loading') {
+      setTimeout(() => navigate('/login?redirect=/account-deletion'), 500);
     }
   }, [status, navigate]);
+
+  // إذا تم حذف الحساب أو لم يعد مسجلاً دخول، لا تظهر الفورم
+  if (status !== 'authenticated') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md text-center">
+          <h1 className="text-2xl font-bold mb-4">{language === 'ar' ? 'حذف الحساب' : 'Delete Account'}</h1>
+          <p className="mb-4 text-gray-600">{language === 'ar' ? 'يجب تسجيل الدخول أولاً.' : 'You must be logged in.'}</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleDelete = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +42,8 @@ export default function AccountDeletionPage() {
       return;
     }
     try {
-      const res = await fetch('https://api.medicare-iq.com/api/auth/me', {
+      const apiBase = (import.meta as any)?.env?.VITE_API_BASE_URL || 'https://api.medicare-iq.com';
+      const res = await fetch(`${apiBase}/api/auth/me`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -50,23 +64,11 @@ export default function AccountDeletionPage() {
       setTimeout(() => navigate('/'), 2000);
     } catch (err) {
       setError(language === 'ar' ? 'حدث خطأ. حاول مرة أخرى.' : 'An error occurred. Please try again.');
-      // طباعة الخطأ في الكونسول للمطور
       // eslint-disable-next-line no-console
       console.error('Account deletion error:', err);
       setLoading(false);
     }
   };
-
-  if (status !== 'authenticated') {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md text-center">
-          <h1 className="text-2xl font-bold mb-4">{language === 'ar' ? 'حذف الحساب' : 'Delete Account'}</h1>
-          <p className="mb-4 text-gray-600">{language === 'ar' ? 'يجب تسجيل الدخول أولاً.' : 'You must be logged in.'}</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
