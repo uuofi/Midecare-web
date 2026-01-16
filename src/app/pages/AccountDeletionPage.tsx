@@ -29,8 +29,8 @@ export default function AccountDeletionPage() {
       return;
     }
     try {
-      const res = await fetch('https://api.medicare-iq.com/api/auth/delete-account', {
-        method: 'POST',
+      const res = await fetch('https://api.medicare-iq.com/api/auth/me', {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
