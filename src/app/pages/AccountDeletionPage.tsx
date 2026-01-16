@@ -12,14 +12,25 @@ export default function AccountDeletionPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // إذا لم يكن المستخدم مسجل دخول، يتم توجيهه لتسجيل الدخول
+  // إذا لم يكن المستخدم مسجل دخول، يتم توجيهه لتسجيل الدخول فقط إذا كانت الحالة anonymous
   useEffect(() => {
-    if (status === 'anonymous' || status === 'loading') {
+    if (status === 'anonymous') {
       setTimeout(() => navigate('/login?redirect=/account-deletion'), 500);
     }
   }, [status, navigate]);
 
-  // إذا تم حذف الحساب أو لم يعد مسجلاً دخول، لا تظهر الفورم
+  // إذا كانت الحالة loading، اعرض شاشة انتظار
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md text-center">
+          <h1 className="text-2xl font-bold mb-4">{language === 'ar' ? 'حذف الحساب' : 'Delete Account'}</h1>
+          <p className="mb-4 text-gray-600">{language === 'ar' ? 'جاري التحقق من تسجيل الدخول...' : 'Checking login status...'}</p>
+        </div>
+      </div>
+    );
+  }
+  // إذا لم يكن مصادق، اعرض رسالة ويعاد التوجيه تلقائياً
   if (status !== 'authenticated') {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
