@@ -12,12 +12,6 @@ export default function FeaturesPage() {
       features: tList('featureBookingBullets')
     },
     {
-      icon: MessageSquare,
-      title: t('featureChatTitle'),
-      description: t('featureChatDesc'),
-      features: tList('featureChatBullets')
-    },
-    {
       icon: Shield,
       title: t('featureE2eeTitle'),
       description: t('featureE2eeDesc'),

@@ -40,7 +40,6 @@ export default function AboutPage() {
         heroSubtitle: 'A mobile app for appointment booking and secure patient-doctor communication.',
         ideaTitle: 'Product idea',
         ideaP1: 'The idea is simple: make it easier for patients to reach doctors, and easier for doctors to manage appointments in one place.',
-        ideaP2: 'The app focuses on booking, appointment details, chat (with optional E2EE), and account tools like password change and account deletion.',
         howTitle: 'How it works',
         steps: [
           { number: '01', title: 'Choose your role', description: 'Patient or doctor.' },

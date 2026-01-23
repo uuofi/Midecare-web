@@ -13,11 +13,7 @@ export default function HomePage() {
       title: t('featureBookingTitle'),
       description: t('featureBookingDesc')
     },
-    {
-      icon: MessageSquare,
-      title: t('featureChatTitle'),
-      description: t('featureChatDesc')
-    },
+
     {
       icon: Shield,
       title: t('featureE2eeTitle'),
